@@ -1,29 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>MOKIBUL'S PRIVATE SITE</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOKIBUL KHAN PRIVATE SERVER</title>
     <style>
-        body { background-color: black; color: #00ff00; text-align: center; font-family: monospace; padding-top: 100px; }
-        input { padding: 10px; background: #222; color: #00ff00; border: 1px solid #00ff00; }
-        button { padding: 10px 20px; background: #00ff00; color: black; border: none; cursor: pointer; margin-top: 10px; }
+        body { background-color: #050505; color: #00FF00; font-family: 'Courier New', Courier, monospace; text-align: center; padding-top: 50px; }
+        .box { border: 2px solid #00FF00; padding: 30px; display: inline-block; border-radius: 15px; background: #111; box-shadow: 0 0 20px #00FF00; }
+        input { background: #000; border: 1px solid #00FF00; color: #00FF00; padding: 12px; width: 220px; text-align: center; border-radius: 5px; margin-bottom: 10px; }
+        button { background: #00FF00; color: #000; border: none; padding: 12px 25px; font-weight: bold; cursor: pointer; border-radius: 5px; }
+        #secret-area { display: none; margin-top: 30px; }
     </style>
 </head>
 <body>
-    <h1>MOKIBUL KHAN PRIVATE SERVER</h1>
-    <p>Password Daalo Warna Entry Nahi Milegi!</p>
-    <input type="password" id="pass" placeholder="Enter Password">
-    <br>
-    <button onclick="check()">LOGIN</button>
+    <div id="login-screen" class="box">
+        <h1>MOKIBUL KHAN SERVER</h1>
+        <p>System Locked: Enter Secret Key</p>
+        <input type="password" id="userPass" placeholder="Secret Key...">
+        <br>
+        <button onclick="unlock()">ACCESS GRANTED</button>
+    </div>
+    <div id="secret-area">
+        <h1>Welcome to the Hidden Zone</h1>
+        <p>Swaagat Hai Mokibul Bhai! Sab Kuch Surakshit Hai.</p>
+    </div>
     <script>
-        function check() {
-            var p = document.getElementById("pass").value;
-            if(p == "Mokim@123") {
-                alert("Swaagat Hai Mokibul Bhai!");
-                document.body.innerHTML = "<h1>Welcome to the Secret Zone!</h1><p>Ye teri private website hai.</p>";
+        function unlock() {
+            var input = document.getElementById("userPass").value;
+            // Password 'Mokim@123' hidden in Base64
+            var key = "TW9raW1AMTIz"; 
+            if (btoa(input) === key) {
+                alert("Identity Confirmed!");
+                document.getElementById("login-screen").style.display = "none";
+                document.getElementById("secret-area").style.display = "block";
             } else {
-                alert("Galat Password!");
+                alert("Access Denied!");
             }
         }
     </script>
 </body>
 </html>
+
