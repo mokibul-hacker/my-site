@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MOKIBUL'S PRIVATE SITE</title>
+    <style>
+        body { background-color: black; color: #00ff00; text-align: center; font-family: monospace; padding-top: 100px; }
+        input { padding: 10px; background: #222; color: #00ff00; border: 1px solid #00ff00; }
+        button { padding: 10px 20px; background: #00ff00; color: black; border: none; cursor: pointer; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>MOKIBUL KHAN PRIVATE SERVER</h1>
+    <p>Password Daalo Warna Entry Nahi Milegi!</p>
+    <input type="password" id="pass" placeholder="Enter Password">
+    <br>
+    <button onclick="check()">LOGIN</button>
+    <script>
+        function check() {
+            var p = document.getElementById("pass").value;
+            if(p == "Mokim@123") {
+                alert("Swaagat Hai Mokibul Bhai!");
+                document.body.innerHTML = "<h1>Welcome to the Secret Zone!</h1><p>Ye teri private website hai.</p>";
+            } else {
+                alert("Galat Password!");
+            }
+        }
+    </script>
+</body>
+</html>
