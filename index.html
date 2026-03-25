@@ -5,51 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOKIM 4K DOWNLOADER</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; text-align: center; padding: 20px; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-        .box { background: rgba(30, 41, 59, 0.7); padding: 40px; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); max-width: 400px; width: 100%; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
-        h1 { color: #38bdf8; font-size: 28px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
-        input { width: 100%; padding: 15px; margin-bottom: 25px; border-radius: 12px; border: 2px solid #334155; outline: none; font-size: 16px; background: #0f172a; color: white; box-sizing: border-box; transition: 0.3s; }
-        input:focus { border-color: #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
-        .btn { background: #38bdf8; color: #0f172a; border: none; padding: 18px; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%; font-size: 18px; transition: 0.3s; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); }
-        .btn:hover { background: #7dd3fc; transform: translateY(-2px); }
-        #result-box { margin-top: 30px; display: none; animation: fadeIn 0.5s ease-in; }
-        .dl-btn { display: block; background: #22c55e; color: white; padding: 18px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 15px; font-size: 18px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        body { font-family: sans-serif; background: #0f172a; color: white; text-align: center; padding: 20px; }
+        .box { background: #1e293b; padding: 30px; border-radius: 20px; max-width: 400px; margin: auto; border: 1px solid #334155; }
+        h1 { color: #38bdf8; }
+        input { width: 90%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: none; background: #334155; color: white; }
+        .btn { background: #38bdf8; color: #0f172a; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; font-size: 18px; }
+        .dl-btn { display: block; background: #22c55e; color: white; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold; margin-top: 10px; }
     </style>
 </head>
 <body>
 
     <div class="box">
         <h1>MOKIM VIP 📥</h1>
-        <p style="color: #94a3b8; margin-bottom: 20px;">वीडियो लिंक यहाँ पेस्ट करें</p>
-        
-        <input type="text" id="vLink" placeholder="https://www.instagram.com/reels/...">
-        <button class="btn" onclick="generateVIP()">मैजिक बटन दबाएँ</button>
+        <p>लिंक पेस्ट करें और अलग सर्वर आज़माएँ</p>
+        <input type="text" id="vLink" placeholder="यहाँ लिंक पेस्ट करें...">
+        <button class="btn" onclick="showEngines()">वीडियो डाउनलोड करें</button>
 
-        <div id="result-box">
-            <p style="color: #22c55e; font-size: 14px;">लिंक सफलतापूर्वक जनरेट हुआ! ✅</p>
-            <div id="action-btn"></div>
-            <p style="font-size: 11px; margin-top: 15px; color: #94a3b8;">नोट: नया पेज खुलने पर 2 सेकंड रुकें, फिर डाउनलोड बटन दबाएँ।</p>
+        <div id="result" style="display:none; margin-top:20px;">
+            <p>अगर एक सर्वर न खुले, तो दूसरा दबाएँ:</p>
+            <div id="buttons"></div>
         </div>
     </div>
 
     <script>
-        function generateVIP() {
+        function showEngines() {
             let link = document.getElementById('vLink').value;
-            let resultBox = document.getElementById('result-box');
-            let actionDiv = document.getElementById('action-btn');
-
-            if (!link) { alert("भाई, लिंक डालना भूल गए क्या?"); return; }
-
-            resultBox.style.display = "block";
+            if(!link) { alert("लिंक डालो भाई!"); return; }
+            document.getElementById('result').style.display = "block";
+            let enc = encodeURIComponent(link);
             
-            // यह सबसे तगड़ा इंजन है जो कभी फेल नहीं होता
-            let finalUrl = "https://snapinsta.app/php/download.php?url=" + encodeURIComponent(link);
-            
-            actionDiv.innerHTML = `
-                <a href="${finalUrl}" target="_blank" class="dl-btn">
-                    DOWNLOAD NOW
-                </a>
+            // ये 3 अलग-अलग कंपनियों के सर्वर हैं, एक न एक पक्का खुलेगा
+            document.getElementById('buttons').innerHTML = `
+                <a href="https://saveig.app/en/download?url=${enc}" target="_blank" class="dl-btn">सर्वर 1 (सबसे तेज़)</a>
+                <a href="https://instavideosave.net/?url=${enc}" target="_blank" class="dl-btn" style="background:#a855f7;">सर्वर 2 (नया रास्ता)</a>
+                <a href="https://pastedownload.com/instagram-video-downloader/#url=${enc}" target="_blank" class="dl-btn" style="background:#f59e0b;">सर्वर 3 (भरोसेमंद)</a>
             `;
         }
     </script>
