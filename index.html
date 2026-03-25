@@ -10,39 +10,51 @@
         h1 { color: #38bdf8; font-size: 26px; margin-bottom: 10px; }
         input { width: 90%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: none; outline: none; font-size: 16px; background: #334155; color: white; }
         .btn { background: #38bdf8; color: #0f172a; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; font-size: 18px; }
-        #output { margin-top: 25px; display: none; background: #1e293b; padding: 10px; border-radius: 15px; }
-        iframe { width: 100%; height: 250px; border: none; border-radius: 15px; background: white; }
+        #result { margin-top: 25px; display: none; background: #334155; padding: 20px; border-radius: 15px; border: 1px solid #38bdf8; }
+        .download-btn { display: inline-block; background: #22c55e; color: white; padding: 15px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; margin-top: 10px; }
     </style>
 </head>
 <body>
 
     <div class="box">
         <h1>MOKIM DOWNLOADER 📥</h1>
-        <p>Instagram, YouTube, FB वीडियो यहाँ से डाउनलोड करें</p>
+        <p>Instagram, YouTube, FB वीडियो डाउनलोड करें</p>
         
-        <input type="text" id="userInput" placeholder="यहाँ वीडियो लिंक पेस्ट करें...">
-        <button class="btn" onclick="startDownload()">डाउनलोड बटन बनाएँ</button>
+        <input type="text" id="videoUrl" placeholder="यहाँ लिंक पेस्ट करें...">
+        <button class="btn" onclick="downloadVideo()">वीडियो डाउनलोड करें</button>
 
-        <div id="output">
-            <p style="color: #fbbf24; margin-bottom: 10px;">नीचे बटन लोड हो रहा है, थोड़ा इंतज़ार करें...</p>
-            <div id="engine-container"></div>
+        <div id="result">
+            <p id="status" style="color: #fbbf24;">प्रोसेसिंग शुरू हो रही है...</p>
+            <div id="downloadArea"></div>
         </div>
     </div>
 
     <script>
-        function startDownload() {
-            let link = document.getElementById('userInput').value;
-            let output = document.getElementById('output');
-            let container = document.getElementById('engine-container');
+        function downloadVideo() {
+            const url = document.getElementById('videoUrl').value;
+            const resultDiv = document.getElementById('result');
+            const downloadArea = document.getElementById('downloadArea');
+            const status = document.getElementById('status');
 
-            if (!link) {
+            if (!url) {
                 alert("भाई, लिंक तो डालो!");
                 return;
             }
 
-            output.style.display = "block";
-            // यह इंजन बिना किसी चाबी के सीधा वीडियो निकालता है
-            container.innerHTML = `<iframe src="https://alldownloader.pro/api/widget?url=${encodeURIComponent(link)}"></iframe>`;
+            resultDiv.style.display = "block";
+            status.innerText = "वीडियो तैयार है! नीचे क्लिक करें:";
+            
+            // यह जादुई लिंक इंजन है जो सीधा डाउनलोड पेज पर ले जाएगा
+            const finalLink = "https://9xbuddy.com/process?url=" + encodeURIComponent(url);
+            
+            downloadArea.innerHTML = `
+                <a href="${finalLink}" target="_blank" class="download-btn">
+                    अभी डाउनलोड करें (Click Here)
+                </a>
+                <p style="font-size: 12px; margin-top: 10px; color: #94a3b8;">
+                    (लिंक खुलने पर 'Download' बटन दबाएं)
+                </p>
+            `;
         }
     </script>
 
