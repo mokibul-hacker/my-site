@@ -1,19 +1,54 @@
-function startDownload() {
-    let link = document.getElementById('userInput').value.trim();
-    let output = document.getElementById('output');
-    let container = document.getElementById('engine-container');
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOKIM 4K DOWNLOADER</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: white; text-align: center; padding: 20px; }
+        .box { background: #1e293b; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-width: 450px; margin: auto; border: 1px solid #334155; }
+        h1 { color: #38bdf8; font-size: 26px; margin-bottom: 10px; }
+        input { width: 90%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: none; outline: none; font-size: 16px; background: #334155; color: white; }
+        .btn { background: #38bdf8; color: #0f172a; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; font-size: 18px; }
+        #result-box { margin-top: 25px; display: none; background: #334155; padding: 20px; border-radius: 15px; border: 1px solid #22c55e; }
+        .dl-btn { display: block; background: #22c55e; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 10px; font-size: 14px; }
+    </style>
+</head>
+<body>
 
-    // लिंक की जांच
-    if (link === "" || !link.startsWith("http")) {
-        alert("कृपया एक सही वीडियो लिंक पेस्ट करें!");
-        return;
-    }
+    <div class="box">
+        <h1>MOKIM DOWNLOADER 📥</h1>
+        <p>लिंक डालें और नीचे से कोई भी सर्वर चुनें</p>
+        
+        <input type="text" id="vLink" placeholder="यहाँ वीडियो लिंक पेस्ट करें...">
+        <button class="btn" onclick="openEngines()">डाउनलोड विकल्प खोलें</button>
 
-    output.style.display = "block";
-    container.innerHTML = `<p style="color: #38bdf8;">प्रोसेसिंग चालू है...</p>`;
+        <div id="result-box">
+            <p style="color: #fbbf24; font-weight: bold;">वीडियो तैयार है! सर्वर बदल कर देखें:</p>
+            <div id="links-area"></div>
+        </div>
+    </div>
 
-    // थोड़े समय बाद iframe लोड करना
-    setTimeout(() => {
-        container.innerHTML = `<iframe src="https://alldownloader.pro/api/widget?url=${encodeURIComponent(link)}" style="border: 2px solid #38bdf8;"></iframe>`;
-    }, 500);
-}
+    <script>
+        function openEngines() {
+            let link = document.getElementById('vLink').value;
+            let resultBox = document.getElementById('result-box');
+            let linksArea = document.getElementById('links-area');
+
+            if (!link) { alert("भाई, लिंक तो डालो!"); return; }
+
+            resultBox.style.display = "block";
+            let encodedLink = encodeURIComponent(link);
+
+            // 4 अलग-अलग और सबसे ताकतवर सर्वर
+            linksArea.innerHTML = `
+                <a href="https://snapinst.app/?url=${encodedLink}" target="_blank" class="dl-btn">Server 1 (Instagram Best)</a>
+                <a href="https://ssyoutube.com/en1/instagram-video-downloader?url=${encodedLink}" target="_blank" class="dl-btn" style="background:#ef4444;">Server 2 (YouTube/FB Best)</a>
+                <a href="https://instavideosave.net/?url=${encodedLink}" target="_blank" class="dl-btn" style="background:#a855f7;">Server 3 (Fast Download)</a>
+                <a href="https://ddinstagram.com/show?url=${encodedLink}" target="_blank" class="dl-btn" style="background:#64748b;">Server 4 (Alternative)</a>
+            `;
+        }
+    </script>
+
+</body>
+</html>
