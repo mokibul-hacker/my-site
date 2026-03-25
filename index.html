@@ -1,45 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOKIBUL KHAN SERVER</title>
+    <title>Mokim Universal 4K Downloader</title>
     <style>
-        body { background-color: black; color: #0f0; font-family: monospace; text-align: center; margin: 0; padding: 20px; }
-        .box { border: 2px solid #0f0; padding: 20px; border-radius: 15px; box-shadow: 0 0 15px #0f0; background: rgba(0, 20, 0, 0.9); margin-top: 50px; }
-        input { background: black; border: 1px solid #0f0; color: #0f0; padding: 12px; width: 80%; margin: 15px 0; text-align: center; }
-        button { background: #0f0; color: black; border: none; padding: 10px 25px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
-        #gallery { display: none; }
-        .my-photo { width: 100%; max-width: 350px; border: 2px solid #0f0; border-radius: 10px; margin-top: 20px; box-shadow: 0 0 20px #0f0; }
-        h1 { text-shadow: 0 0 10px #0f0; font-size: 20px; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: white; text-align: center; padding: 20px; }
+        .box { background: #1e293b; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-width: 450px; margin: auto; border: 1px solid #334155; }
+        h1 { color: #38bdf8; font-size: 24px; }
+        input { width: 90%; padding: 15px; margin: 20px 0; border-radius: 10px; border: none; outline: none; font-size: 16px; }
+        .btn { background: #38bdf8; color: #0f172a; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; }
+        .btn:hover { background: #7dd3fc; }
+        #output { margin-top: 30px; display: none; background: #334155; padding: 15px; border-radius: 10px; }
+        video { width: 100%; border-radius: 10px; }
+        .dl-btn { display: block; background: #22c55e; color: white; text-decoration: none; padding: 12px; margin-top: 15px; border-radius: 8px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div id="login-box" class="box">
-        <h1>MOKIBUL KHAN SERVER</h1>
-        <p>System Locked: Enter Key</p>
-        <input type="password" id="pass" placeholder="Secret Key...">
-        <br>
-        <button onclick="check()">ACCESS GRANTED</button>
-    </div>
+    <div class="box">
+        <h1>MOKIM DOWNLOADER 📥</h1>
+        <p>YouTube, Insta या FB का लिंक यहाँ डालें</p>
+        
+        <input type="text" id="userInput" placeholder="यहाँ लिंक पेस्ट करें...">
+        <button class="btn" onclick="processDownload()">वीडियो लोड करें</button>
 
-    <div id="gallery" class="box">
-        <h1>HIDDEN GALLERY</h1>
-        <p>Swaagat Hai Mokibul Bhai!</p>
-        <img src="photo.jpg" class="my-photo">
-        <br><br>
-        <button onclick="location.reload()">LOGOUT</button>
+        <div id="output">
+            <p id="status" style="color: #fbbf24;"></p>
+            <video id="videoPlayer" controls></video>
+            <a id="downloadLink" href="#" class="dl-btn" download>गैलरी में सेव करें (4K/HD)</a>
+        </div>
     </div>
 
     <script>
-        function check() {
-            var p = document.getElementById("pass").value;
-            if(btoa(p) === "TW9raW1AMTIz") {
-                document.getElementById("login-box").style.display = "none";
-                document.getElementById("gallery").style.display = "block";
+        function processDownload() {
+            let link = document.getElementById('userInput').value;
+            let output = document.getElementById('output');
+            let status = document.getElementById('status');
+
+            if (!link) {
+                alert("भाई, लिंक डालना भूल गए!");
+                return;
+            }
+
+            output.style.display = "block";
+            status.innerText = "वीडियो ढूँढ रहा हूँ... कृपया रुकें";
+
+            // यहाँ हम पहचान रहे हैं कि लिंक किसका है
+            if (link.includes("youtube.com") || link.includes("youtu.be")) {
+                status.innerText = "यूट्यूब वीडियो तैयार हो रहा है...";
+            } else if (link.includes("instagram.com")) {
+                status.innerText = "इंस्टाग्राम रील लोड हो रही है...";
+            } else if (link.includes("facebook.com")) {
+                status.innerText = "फेसबुक वीडियो लोड हो रहा है...";
             } else {
-                alert("Wrong Key! Access Denied.");
+                status.innerText = "भाई, यह लिंक सही नहीं लग रहा!";
             }
         }
     </script>
 
+</body>
+</html>
