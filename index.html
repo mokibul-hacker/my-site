@@ -11,41 +11,41 @@
         input { width: 90%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: none; outline: none; font-size: 16px; background: #334155; color: white; }
         .btn { background: #38bdf8; color: #0f172a; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; font-size: 18px; }
         #result-box { margin-top: 25px; display: none; background: #334155; padding: 20px; border-radius: 15px; border: 1px solid #22c55e; }
-        .dl-btn { display: block; background: #22c55e; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 10px; font-size: 14px; }
+        .dl-btn { display: block; background: #22c55e; color: white; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold; margin-top: 10px; font-size: 16px; }
     </style>
 </head>
 <body>
 
     <div class="box">
         <h1>MOKIM DOWNLOADER 📥</h1>
-        <p>लिंक डालें और नीचे से कोई भी सर्वर चुनें</p>
+        <p>लिंक पेस्ट करें और बटन दबाएँ</p>
         
-        <input type="text" id="vLink" placeholder="यहाँ वीडियो लिंक पेस्ट करें...">
-        <button class="btn" onclick="openEngines()">डाउनलोड विकल्प खोलें</button>
+        <input type="text" id="vLink" placeholder="यहाँ लिंक पेस्ट करें...">
+        <button class="btn" onclick="openDirect()">वीडियो डाउनलोड करें</button>
 
         <div id="result-box">
-            <p style="color: #fbbf24; font-weight: bold;">वीडियो तैयार है! सर्वर बदल कर देखें:</p>
-            <div id="links-area"></div>
+            <p style="color: #22c55e; font-weight: bold;">डाउनलोड लिंक तैयार है! ✅</p>
+            <div id="final-link"></div>
         </div>
     </div>
 
     <script>
-        function openEngines() {
+        function openDirect() {
             let link = document.getElementById('vLink').value;
             let resultBox = document.getElementById('result-box');
-            let linksArea = document.getElementById('links-area');
+            let finalDiv = document.getElementById('final-link');
 
             if (!link) { alert("भाई, लिंक तो डालो!"); return; }
 
             resultBox.style.display = "block";
-            let encodedLink = encodeURIComponent(link);
-
-            // 4 अलग-अलग और सबसे ताकतवर सर्वर
-            linksArea.innerHTML = `
-                <a href="https://snapinst.app/?url=${encodedLink}" target="_blank" class="dl-btn">Server 1 (Instagram Best)</a>
-                <a href="https://ssyoutube.com/en1/instagram-video-downloader?url=${encodedLink}" target="_blank" class="dl-btn" style="background:#ef4444;">Server 2 (YouTube/FB Best)</a>
-                <a href="https://instavideosave.net/?url=${encodedLink}" target="_blank" class="dl-btn" style="background:#a855f7;">Server 3 (Fast Download)</a>
-                <a href="https://ddinstagram.com/show?url=${encodedLink}" target="_blank" class="dl-btn" style="background:#64748b;">Server 4 (Alternative)</a>
+            
+            // यह इंजन सीधा SnapInsta के असली डाउनलोड पेज पर ले जाएगा
+            let directUrl = "https://snapinsta.app/?url=" + encodeURIComponent(link);
+            
+            finalDiv.innerHTML = `
+                <a href="${directUrl}" target="_blank" class="dl-btn">
+                    CLICK TO DOWNLOAD NOW
+                </a>
             `;
         }
     </script>
