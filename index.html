@@ -11,22 +11,22 @@
         input { width: 90%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: none; outline: none; font-size: 16px; background: #334155; color: white; }
         .btn { background: #38bdf8; color: #0f172a; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; font-size: 18px; }
         #result-box { margin-top: 25px; display: none; background: #334155; padding: 20px; border-radius: 15px; border: 1px solid #22c55e; }
-        .dl-btn { display: inline-block; background: #22c55e; color: white; padding: 15px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; margin-top: 10px; width: 80%; }
-        .yt-btn { background: #ef4444; }
+        .dl-btn { display: inline-block; background: #22c55e; color: white; padding: 15px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; margin-top: 10px; width: 85%; }
     </style>
 </head>
 <body>
 
     <div class="box">
         <h1>MOKIM DOWNLOADER 📥</h1>
-        <p>वीडियो लिंक पेस्ट करें और डाउनलोड बटन चुनें</p>
+        <p>लिंक पेस्ट करें और डाउनलोड सर्वर चुनें</p>
         
         <input type="text" id="vLink" placeholder="यहाँ लिंक पेस्ट करें...">
-        <button class="btn" onclick="showOptions()">डाउनलोड विकल्प दिखाएँ</button>
+        <button class="btn" onclick="showOptions()">लिंक तैयार करें</button>
 
         <div id="result-box">
-            <p style="color: #22c55e; font-weight: bold;">डाउनलोड करने के लिए क्लिक करें:</p>
+            <p style="color: #22c55e; font-weight: bold;">वीडियो तैयार है! ✅</p>
             <div id="options"></div>
+            <p style="font-size: 12px; margin-top: 15px; color: #94a3b8;">अगर Server 1 काम न करे, तो Server 2 ट्राई करें।</p>
         </div>
     </div>
 
@@ -36,17 +36,18 @@
             let resultBox = document.getElementById('result-box');
             let optionsDiv = document.getElementById('options');
 
-            if (!link) { alert("भाई, लिंक डालना जरूरी है!"); return; }
-
+            if (!link) { alert("भाई, लिंक डालो!"); return; }
             resultBox.style.display = "block";
             
-            // दो अलग-अलग रास्तों का जुगाड़
-            let server1 = "https://savefrom.net/?url=" + encodeURIComponent(link);
-            let server2 = "https://snapinsta.app/?url=" + encodeURIComponent(link);
+            // ये तीनों अलग-अलग कंपनी के सर्वर हैं, एक न एक पक्का खुलेगा
+            let s1 = "https://snapinsta.app/php/download.php?url=" + encodeURIComponent(link);
+            let s2 = "https://9xbuddy.xyz/process?url=" + encodeURIComponent(link);
+            let s3 = "https://en.savefrom.net/1-youtube-video-downloader-385vG/?url=" + encodeURIComponent(link);
             
             optionsDiv.innerHTML = `
-                <a href="${server1}" target="_blank" class="dl-btn">Server 1 (Best)</a>
-                <a href="${server2}" target="_blank" class="dl-btn" style="background:#0ea5e9; margin-top:10px;">Server 2 (Backup)</a>
+                <a href="${s1}" target="_blank" class="dl-btn">Server 1 (Fast)</a>
+                <a href="${s2}" target="_blank" class="dl-btn" style="background:#0ea5e9;">Server 2 (Backup)</a>
+                <a href="${s3}" target="_blank" class="dl-btn" style="background:#f59e0b;">Server 3 (Old School)</a>
             `;
         }
     </script>
