@@ -3,32 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mokim Universal 4K Downloader</title>
+    <title>MOKIM 4K DOWNLOADER</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: white; text-align: center; padding: 20px; }
         .box { background: #1e293b; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-width: 450px; margin: auto; border: 1px solid #334155; }
-        h1 { color: #38bdf8; font-size: 24px; }
-        input { width: 90%; padding: 15px; margin: 20px 0; border-radius: 10px; border: none; outline: none; font-size: 16px; }
-        .btn { background: #38bdf8; color: #0f172a; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; }
-        .btn:hover { background: #7dd3fc; }
-        #output { margin-top: 30px; display: none; background: #334155; padding: 15px; border-radius: 10px; }
-        video { width: 100%; border-radius: 10px; }
-        .dl-btn { display: block; background: #22c55e; color: white; text-decoration: none; padding: 12px; margin-top: 15px; border-radius: 8px; font-weight: bold; }
+        h1 { color: #38bdf8; font-size: 26px; margin-bottom: 10px; }
+        p { color: #94a3b8; margin-bottom: 20px; }
+        input { width: 90%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: none; outline: none; font-size: 16px; background: #334155; color: white; }
+        .btn { background: #38bdf8; color: #0f172a; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; font-size: 18px; }
+        .btn:hover { background: #7dd3fc; transform: scale(1.02); }
+        #output { margin-top: 30px; display: none; background: #334155; padding: 15px; border-radius: 15px; }
+        video { width: 100%; border-radius: 10px; margin-top: 10px; border: 2px solid #38bdf8; }
+        .dl-btn { display: block; background: #22c55e; color: white; text-decoration: none; padding: 15px; margin-top: 15px; border-radius: 10px; font-weight: bold; font-size: 18px; }
     </style>
 </head>
 <body>
 
     <div class="box">
         <h1>MOKIM DOWNLOADER 📥</h1>
-        <p>YouTube, Insta या FB का लिंक यहाँ डालें</p>
+        <p>Instagram, YouTube, Facebook वीडियो यहाँ से डाउनलोड करें</p>
         
-        <input type="text" id="userInput" placeholder="यहाँ लिंक पेस्ट करें...">
+        <input type="text" id="userInput" placeholder="यहाँ वीडियो का लिंक पेस्ट करें...">
         <button class="btn" onclick="processDownload()">वीडियो लोड करें</button>
 
         <div id="output">
-            <p id="status" style="color: #fbbf24;"></p>
-            <video id="videoPlayer" controls></video>
-            <a id="downloadLink" href="#" class="dl-btn" download>गैलरी में सेव करें (4K/HD)</a>
+            <p id="status" style="color: #fbbf24; font-weight: bold;"></p>
+            <video id="videoPlayer" controls style="display:none;"></video>
+            <a id="downloadLink" href="#" class="dl-btn" style="display:none;" download>गैलरी में सेव करें (4K/HD)</a>
         </div>
     </div>
 
@@ -37,27 +38,35 @@
             let link = document.getElementById('userInput').value;
             let output = document.getElementById('output');
             let status = document.getElementById('status');
+            let videoPlayer = document.getElementById('videoPlayer');
+            let downloadLink = document.getElementById('downloadLink');
 
             if (!link) {
-                alert("भाई, लिंक डालना भूल गए!");
+                alert("भाई, पहले लिंक तो पेस्ट करो!");
                 return;
             }
 
+            // UI अपडेट करें
             output.style.display = "block";
-            status.innerText = "वीडियो ढूँढ रहा हूँ... कृपया रुकें";
+            status.innerText = "वीडियो ढूँढ रहा हूँ... थोड़ा रुकें भाई";
+            videoPlayer.style.display = "none";
+            downloadLink.style.display = "none";
 
-            // यहाँ हम पहचान रहे हैं कि लिंक किसका है
-            if (link.includes("youtube.com") || link.includes("youtu.be")) {
-                status.innerText = "यूट्यूब वीडियो तैयार हो रहा है...";
-            } else if (link.includes("instagram.com")) {
-                status.innerText = "इंस्टाग्राम रील लोड हो रही है...";
-            } else if (link.includes("facebook.com")) {
-                status.innerText = "फेसबुक वीडियो लोड हो रहा है...";
-            } else {
-                status.innerText = "भाई, यह लिंक सही नहीं लग रहा!";
-            }
+            // यहाँ अभी डेमो के लिए टाइमर लगाया है, असली API हम अगले स्टेप में लिंक करेंगे
+            setTimeout(() => {
+                if (link.includes("instagram.com") || link.includes("youtube") || link.includes("facebook")) {
+                    status.innerText = "वीडियो मिल गया! 4K क्वालिटी तैयार है।";
+                    // यहाँ हम असली वीडियो URL सेट करेंगे
+                    videoPlayer.style.display = "block";
+                    downloadLink.style.display = "block";
+                    downloadLink.innerText = "गैलरी में सेव करें";
+                } else {
+                    status.innerText = "माफी भाई, यह लिंक काम नहीं कर रहा।";
+                }
+            }, 2000);
         }
     </script>
 
 </body>
 </html>
+
