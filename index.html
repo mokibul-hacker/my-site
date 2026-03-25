@@ -42,6 +42,31 @@
             }
         }
     </script>
+    <div class="box" style="margin-top: 20px;">
+    <h2>Password Test Mode</h2>
+    <input type="text" id="testInput" placeholder="4 अंकों का पिन">
+    <button onclick="runTest()">Start Auto Test</button>
+    <p id="status" style="color: #0f0;"></p>
+</div>
+
+<script>
+function runTest() {
+    let target = document.getElementById("testInput").value;
+    let status = document.getElementById("status");
+    
+    // 2000 बार ऑटोमैटिक ट्राई करने का लूप
+    for (let i = 0; i <= 2000; i++) {
+        let guess = i.toString().padStart(4, '0');
+        if (guess === target) {
+            status.innerHTML = "✅ पासवर्ड मिल गया: " + guess;
+            break;
+        } else {
+            status.innerHTML = "कोशिश जारी... " + guess;
+        }
+    }
+}
+</script>
+
 </body>
 </html>
 
