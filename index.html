@@ -10,22 +10,22 @@
         h1 { color: #38bdf8; font-size: 26px; margin-bottom: 10px; }
         input { width: 90%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: none; outline: none; font-size: 16px; background: #334155; color: white; }
         .btn { background: #38bdf8; color: #0f172a; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; font-size: 18px; }
-        #output { margin-top: 25px; display: none; }
-        iframe { width: 100%; height: 150px; border: none; border-radius: 15px; background: white; }
+        #output { margin-top: 25px; display: none; background: #1e293b; padding: 10px; border-radius: 15px; }
+        iframe { width: 100%; height: 250px; border: none; border-radius: 15px; background: white; }
     </style>
 </head>
 <body>
 
     <div class="box">
         <h1>MOKIM DOWNLOADER 📥</h1>
-        <p>Instagram, YouTube, FB वीडियो डाउनलोड करें</p>
+        <p>Instagram, YouTube, FB वीडियो यहाँ से डाउनलोड करें</p>
         
-        <input type="text" id="userInput" placeholder="यहाँ लिंक पेस्ट करें...">
-        <button class="btn" onclick="startDownload()">डाउनलोड लिंक बनाएँ</button>
+        <input type="text" id="userInput" placeholder="यहाँ वीडियो लिंक पेस्ट करें...">
+        <button class="btn" onclick="startDownload()">डाउनलोड बटन बनाएँ</button>
 
         <div id="output">
-            <p style="color: #fbbf24; margin-bottom: 10px;">नीचे दिए बटन पर क्लिक करके डाउनलोड करें:</p>
-            <iframe id="dlEngine" src=""></iframe>
+            <p style="color: #fbbf24; margin-bottom: 10px;">नीचे बटन लोड हो रहा है, थोड़ा इंतज़ार करें...</p>
+            <div id="engine-container"></div>
         </div>
     </div>
 
@@ -33,19 +33,16 @@
         function startDownload() {
             let link = document.getElementById('userInput').value;
             let output = document.getElementById('output');
-            let dlEngine = document.getElementById('dlEngine');
+            let container = document.getElementById('engine-container');
 
             if (!link) {
                 alert("भाई, लिंक तो डालो!");
                 return;
             }
 
-            // लिंक से एक्स्ट्रा कचरा साफ करना
-            let cleanLink = link.split('?')[0];
-
             output.style.display = "block";
-            // Loader.to का डायरेक्ट बटन इंजन
-            dlEngine.src = `https://loader.to/api/button/?url=${encodeURIComponent(cleanLink)}&f=mp4`;
+            // यह इंजन बिना किसी चाबी के सीधा वीडियो निकालता है
+            container.innerHTML = `<iframe src="https://alldownloader.pro/api/widget?url=${encodeURIComponent(link)}"></iframe>`;
         }
     </script>
 
