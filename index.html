@@ -9,66 +9,43 @@
         .box { background: #1e293b; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-width: 450px; margin: auto; border: 1px solid #334155; }
         h1 { color: #38bdf8; font-size: 26px; margin-bottom: 10px; }
         input { width: 90%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: none; outline: none; font-size: 16px; background: #334155; color: white; }
-        .btn { background: #38bdf8; color: #0f172a; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; font-size: 18px; transition: 0.3s; }
-        .btn:hover { background: #7dd3fc; transform: scale(1.02); }
-        #output { margin-top: 30px; display: none; background: #334155; padding: 20px; border-radius: 15px; border: 1px dashed #38bdf8; }
-        #status { font-weight: bold; margin-bottom: 15px; }
-        .dl-link { display: inline-block; background: #22c55e; color: white; padding: 15px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; margin-top: 10px; }
+        .btn { background: #38bdf8; color: #0f172a; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; font-size: 18px; }
+        #output { margin-top: 25px; display: none; }
+        iframe { width: 100%; height: 150px; border: none; border-radius: 15px; background: white; }
     </style>
 </head>
 <body>
 
     <div class="box">
         <h1>MOKIM DOWNLOADER 📥</h1>
-        <p>Instagram, YouTube, Facebook वीडियो यहाँ से डाउनलोड करें</p>
+        <p>Instagram, YouTube, FB वीडियो डाउनलोड करें</p>
         
-        <input type="text" id="userInput" placeholder="यहाँ वीडियो का लिंक पेस्ट करें...">
-        <button class="btn" onclick="processDownload()">वीडियो लोड करें</button>
+        <input type="text" id="userInput" placeholder="यहाँ लिंक पेस्ट करें...">
+        <button class="btn" onclick="startDownload()">डाउनलोड लिंक बनाएँ</button>
 
         <div id="output">
-            <div id="status"></div>
+            <p style="color: #fbbf24; margin-bottom: 10px;">नीचे दिए बटन पर क्लिक करके डाउनलोड करें:</p>
+            <iframe id="dlEngine" src=""></iframe>
         </div>
     </div>
 
     <script>
-        async function processDownload() {
+        function startDownload() {
             let link = document.getElementById('userInput').value;
             let output = document.getElementById('output');
-            let status = document.getElementById('status');
+            let dlEngine = document.getElementById('dlEngine');
 
             if (!link) {
-                alert("भाई, पहले लिंक तो डालो!");
+                alert("भाई, लिंक तो डालो!");
                 return;
             }
 
+            // लिंक से एक्स्ट्रा कचरा साफ करना
+            let cleanLink = link.split('?')[0];
+
             output.style.display = "block";
-            status.innerHTML = "<span style='color: #fbbf24;'>वीडियो ढूँढ रहा हूँ... थोड़ा इंतज़ार करें भाई।</span>";
-
-            const options = {
-                method: 'POST',
-                headers: {
-                    'x-rapidapi-key': '3b5b44ae90msh2386e165973a560j1481eajsn377312384f7b',
-                    'x-rapidapi-host': 'auto-download-all-in-one.p.rapidapi.com',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ url: link })
-            };
-
-            try {
-                const response = await fetch('https://auto-download-all-in-one.p.rapidapi.com/v1/social/autolink', options);
-                const result = await response.json();
-                
-                if (result && result.video) {
-                    status.innerHTML = `
-                        <p style="color: #22c55e; font-size: 18px;">वीडियो मिल गया! ✅</p>
-                        <a href="${result.video}" target="_blank" class="dl-link">गैलरी में सेव करें</a>
-                    `;
-                } else {
-                    status.innerHTML = "<span style='color: #ef4444;'>माफी भाई, इस लिंक से वीडियो नहीं मिला।</span>";
-                }
-            } catch (error) {
-                status.innerHTML = "<span style='color: #ef4444;'>सर्वर में दिक्कत है, दोबारा ट्राई करें।</span>";
-            }
+            // Loader.to का डायरेक्ट बटन इंजन
+            dlEngine.src = `https://loader.to/api/button/?url=${encodeURIComponent(cleanLink)}&f=mp4`;
         }
     </script>
 
