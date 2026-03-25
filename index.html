@@ -9,48 +9,44 @@
         .box { background: #1e293b; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-width: 450px; margin: auto; border: 1px solid #334155; }
         h1 { color: #38bdf8; font-size: 26px; margin-bottom: 10px; }
         input { width: 90%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: none; outline: none; font-size: 16px; background: #334155; color: white; }
-        .btn { background: #38bdf8; color: #0f172a; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; font-size: 18px; transition: 0.3s; }
-        .btn:hover { background: #7dd3fc; }
+        .btn { background: #38bdf8; color: #0f172a; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; font-size: 18px; }
         #result-box { margin-top: 25px; display: none; background: #334155; padding: 20px; border-radius: 15px; border: 1px solid #22c55e; }
-        .dl-btn { display: inline-block; background: #22c55e; color: white; padding: 15px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; margin-top: 10px; }
+        .dl-btn { display: inline-block; background: #22c55e; color: white; padding: 15px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; margin-top: 10px; width: 80%; }
+        .yt-btn { background: #ef4444; }
     </style>
 </head>
 <body>
 
     <div class="box">
         <h1>MOKIM DOWNLOADER 📥</h1>
-        <p>Instagram, YouTube, FB वीडियो डाउनलोड करें</p>
+        <p>वीडियो लिंक पेस्ट करें और डाउनलोड बटन चुनें</p>
         
-        <input type="text" id="videoLink" placeholder="यहाँ लिंक पेस्ट करें...">
-        <button class="btn" onclick="generateLink()">वीडियो डाउनलोड करें</button>
+        <input type="text" id="vLink" placeholder="यहाँ लिंक पेस्ट करें...">
+        <button class="btn" onclick="showOptions()">डाउनलोड विकल्प दिखाएँ</button>
 
         <div id="result-box">
-            <p style="color: #22c55e; font-weight: bold;">लिंक तैयार है! ✅</p>
-            <div id="final-button"></div>
-            <p style="font-size: 12px; margin-top: 15px; color: #94a3b8;">नीचे बटन दबाएं, फिर खुलने वाले पेज पर 'Download' चुनें।</p>
+            <p style="color: #22c55e; font-weight: bold;">डाउनलोड करने के लिए क्लिक करें:</p>
+            <div id="options"></div>
         </div>
     </div>
 
     <script>
-        function generateLink() {
-            let link = document.getElementById('videoLink').value;
+        function showOptions() {
+            let link = document.getElementById('vLink').value;
             let resultBox = document.getElementById('result-box');
-            let finalButtonDiv = document.getElementById('final-button');
+            let optionsDiv = document.getElementById('options');
 
-            if (!link) {
-                alert("भाई, लिंक तो डालो!");
-                return;
-            }
+            if (!link) { alert("भाई, लिंक डालना जरूरी है!"); return; }
 
             resultBox.style.display = "block";
             
-            // यह सबसे भरोसेमंद तरीका है जो कभी फेल नहीं होता
-            let safeDownloadUrl = "https://9xbuddy.com/process?url=" + encodeURIComponent(link);
+            // दो अलग-अलग रास्तों का जुगाड़
+            let server1 = "https://savefrom.net/?url=" + encodeURIComponent(link);
+            let server2 = "https://snapinsta.app/?url=" + encodeURIComponent(link);
             
-            finalButtonDiv.innerHTML = `
-                <a href="${safeDownloadUrl}" target="_blank" class="dl-btn">
-                    DOWNLOAD NOW
-                </a>
+            optionsDiv.innerHTML = `
+                <a href="${server1}" target="_blank" class="dl-btn">Server 1 (Best)</a>
+                <a href="${server2}" target="_blank" class="dl-btn" style="background:#0ea5e9; margin-top:10px;">Server 2 (Backup)</a>
             `;
         }
     </script>
