@@ -3,45 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOKIM 4K DOWNLOADER</title>
+    <title>Assam ki Awaaz</title>
     <style>
-        body { font-family: sans-serif; background: #0f172a; color: white; text-align: center; padding: 20px; }
-        .box { background: #1e293b; padding: 30px; border-radius: 20px; max-width: 400px; margin: auto; border: 1px solid #334155; }
-        h1 { color: #38bdf8; }
-        input { width: 90%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: none; background: #334155; color: white; }
-        .btn { background: #38bdf8; color: #0f172a; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; font-size: 18px; }
-        .dl-btn { display: block; background: #22c55e; color: white; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold; margin-top: 10px; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; padding: 20px; }
+        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); max-width: 400px; margin: auto; }
+        h1 { color: #0000ff; } /* Congress Blue */
+        .highlight { color: #d9534f; font-weight: bold; }
+        p { font-size: 18px; line-height: 1.6; color: #333; }
+        .footer { margin-top: 20px; font-weight: bold; color: #555; }
     </style>
 </head>
 <body>
-
-    <div class="box">
-        <h1>MOKIM VIP 📥</h1>
-        <p>लिंक पेस्ट करें और अलग सर्वर आज़माएँ</p>
-        <input type="text" id="vLink" placeholder="यहाँ लिंक पेस्ट करें...">
-        <button class="btn" onclick="showEngines()">वीडियो डाउनलोड करें</button>
-
-        <div id="result" style="display:none; margin-top:20px;">
-            <p>अगर एक सर्वर न खुले, तो दूसरा दबाएँ:</p>
-            <div id="buttons"></div>
-        </div>
+    <div class="card">
+        <h1>🇮🇳 इस बार, बदलाव के लिए! 🇮🇳</h1>
+        <p>भाइयों, महंगाई और नफरत से आजादी चाहिए?</p>
+        <p>पेट्रोल <span class="highlight">110/-</span> और डीजल <span class="highlight">90/-</span> के खिलाफ आवाज़ उठाएं।</p>
+        <hr>
+        <h3>कांग्रेस को क्यों चुनें?</h3>
+        <p>✅ पुरानी पेंशन और न्याय का वादा।<br>
+           ✅ युवाओं के लिए पक्की नौकरी की गारंटी।<br>
+           ✅ भाईचारा और संविधान की सुरक्षा।</p>
+        <p><b>असम की खुशहाली के लिए, हाथ का साथ दें!</b></p>
+        <div class="footer">जय हिन्द! 🇮🇳</div>
     </div>
-
-    <script>
-        function showEngines() {
-            let link = document.getElementById('vLink').value;
-            if(!link) { alert("लिंक डालो भाई!"); return; }
-            document.getElementById('result').style.display = "block";
-            let enc = encodeURIComponent(link);
-            
-            // ये 3 अलग-अलग कंपनियों के सर्वर हैं, एक न एक पक्का खुलेगा
-            document.getElementById('buttons').innerHTML = `
-                <a href="https://saveig.app/en/download?url=${enc}" target="_blank" class="dl-btn">सर्वर 1 (सबसे तेज़)</a>
-                <a href="https://instavideosave.net/?url=${enc}" target="_blank" class="dl-btn" style="background:#a855f7;">सर्वर 2 (नया रास्ता)</a>
-                <a href="https://pastedownload.com/instagram-video-downloader/#url=${enc}" target="_blank" class="dl-btn" style="background:#f59e0b;">सर्वर 3 (भरोसेमंद)</a>
-            `;
-        }
-    </script>
-
 </body>
 </html>
