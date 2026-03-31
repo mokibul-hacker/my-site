@@ -1,30 +1,33 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assam ki Awaaz</title>
+    <title>Mokibul Khan Server</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; padding: 20px; }
-        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); max-width: 400px; margin: auto; }
-        h1 { color: #0000ff; } /* Congress Blue */
-        .highlight { color: #d9534f; font-weight: bold; }
-        p { font-size: 18px; line-height: 1.6; color: #333; }
-        .footer { margin-top: 20px; font-weight: bold; color: #555; }
+        body { background-color: black; color: #39ff14; font-family: monospace; text-align: center; padding-top: 100px; }
+        .box { border: 2px solid #39ff14; display: inline-block; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px #39ff14; }
+        input { background: transparent; border: 1px solid #39ff14; color: white; padding: 10px; margin: 10px; text-align: center; }
+        button { background: #39ff14; color: black; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>🇮🇳 इस बार, बदलाव के लिए! 🇮🇳</h1>
-        <p>भाइयों, महंगाई और नफरत से आजादी चाहिए?</p>
-        <p>पेट्रोल <span class="highlight">110/-</span> और डीजल <span class="highlight">90/-</span> के खिलाफ आवाज़ उठाएं।</p>
-        <hr>
-        <h3>कांग्रेस को क्यों चुनें?</h3>
-        <p>✅ पुरानी पेंशन और न्याय का वादा।<br>
-           ✅ युवाओं के लिए पक्की नौकरी की गारंटी।<br>
-           ✅ भाईचारा और संविधान की सुरक्षा।</p>
-        <p><b>असम की खुशहाली के लिए, हाथ का साथ दें!</b></p>
-        <div class="footer">जय हिन्द! 🇮🇳</div>
+    <div class="box">
+        <h1>MOKIBUL KHAN SERVER</h1>
+        <p>System Locked: Enter Key</p>
+        <input type="password" id="key" placeholder="Secret Key..."> <br>
+        <button onclick="checkKey()">ACCESS GRANTED</button>
     </div>
+
+    <script>
+        function checkKey() {
+            var pass = document.getElementById("key").value;
+            // यहाँ अपनी पसंद का पासवर्ड सेट करें
+            if (pass === "MOKIM_786") {
+                alert("Access Granted! Welcome Boss.");
+                window.location.href = "https://your-next-page.com";
+            } else {
+                alert("Wrong Key! System Blocked.");
+            }
+        }
+    </script>
 </body>
 </html>
