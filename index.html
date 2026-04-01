@@ -1,36 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>MOKIBUL KHAN SERVER</title>
-    <style>
-        body { background: black; color: #0f0; font-family: 'Courier New', monospace; text-align: center; margin-top: 100px; }
-        .server-box { border: 2px solid #0f0; display: inline-block; padding: 30px; box-shadow: 0 0 20px #0f0; border-radius: 10px; }
-        input { background: #111; color: #0f0; border: 1px solid #0f0; padding: 12px; font-size: 18px; width: 250px; }
-        button { background: #0f0; color: black; border: none; padding: 12px 25px; cursor: pointer; font-weight: bold; margin-top: 15px; }
-        button:hover { background: #0a0; }
-    </style>
-</head>
-<body>
-    <div class="server-box">
-        <h1>MOKIBUL KHAN SERVER</h1>
-        <p>SYSTEM LOCKED: ENTER SECRET KEY</p>
-        <input type="password" id="passInput" placeholder="Enter Key Here...">
-        <br>
-        <button onclick="unlock()">ACCESS GRANTED</button>
-    </div>
+async function checkKey() {
+    const inputKey = document.getElementById("secret-input").value;
+    const encoder = new TextEncoder();
+    const data = encoder.encode(inputKey);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 
-    <script>
-        function unlock() {
-            var input = document.getElementById("passInput").value;
-            // यहाँ अपना नया पासवर्ड बदल दे!
-            if (input === "MOKIBUL_PRO_2026") {
-                alert("ACCESS GRANTED! Welcome, Mokibul Khan.");
-                window.location.href = "https://github.com/mokibul-hacker"; // या कोई और पेज
-            } else {
-                alert("WRONG KEY! SYSTEM BLOCKED.");
-            }
-        }
-    </script>
-</body>
-</html>
+    // यह 'MOKIBUL2026' का सुरक्षित हैश (Hash) है
+    const correctHash = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8";
+
+    if (hashHex === correctHash) {
+        alert("ACCESS GRANTED! स्वागत है मोकिबुल खान।");
+        window.location.href = "success.html"; 
+    } else {
+        alert("WRONG KEY! कोशिश करते रहो।");
+    }
+}
