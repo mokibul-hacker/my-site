@@ -3,127 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mokibul Khan Server</title>
+    <title>MOKIBUL HYDRA SERVER</title>
     <style>
-        body {
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Courier New', Courier, monospace;
-            overflow: hidden;
+        body { 
+            background-color: black; 
+            color: #00ff00; 
+            font-family: 'Courier New', monospace; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+            overflow: hidden; 
         }
-
-        .server-box {
-            border: 3px solid #00ff00;
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 0 25px #00ff00;
+        .container { 
+            border: 2px solid #00ff00; 
+            padding: 25px; 
+            border-radius: 10px; 
+            text-align: center; 
+            box-shadow: 0 0 20px #00ff00; 
+            width: 90%; 
+            max-width: 400px;
             background: rgba(0, 0, 0, 0.9);
-            width: 320px;
-            transition: 0.5s;
         }
-
-        h1 {
-            color: #00ff00;
-            font-size: 22px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px #00ff00;
-        }
-
-        #status-text {
-            color: #00ff00;
-            font-size: 14px;
-            margin-bottom: 25px;
-        }
-
-        input {
-            width: 90%;
-            padding: 12px;
-            background: transparent;
-            border: 1px solid #00ff00;
-            color: #00ff00;
-            text-align: center;
-            margin-bottom: 20px;
+        h2 { font-size: 18px; text-shadow: 0 0 5px #00ff00; margin-bottom: 20px; }
+        input { 
+            width: 80%; 
+            padding: 10px; 
+            background: transparent; 
+            border: 1px solid #00ff00; 
+            color: #00ff00; 
+            margin-bottom: 15px; 
+            text-align: center; 
             outline: none;
-            font-size: 16px;
         }
-
-        button {
-            width: 100%;
-            padding: 15px;
-            background-color: #00ff00;
-            border: none;
-            color: black;
-            font-weight: bold;
-            cursor: pointer;
+        button { 
+            width: 85%; 
+            padding: 12px; 
+            background: #00ff00; 
+            color: black; 
+            font-weight: bold; 
+            cursor: pointer; 
+            border: none; 
             text-transform: uppercase;
-            font-size: 14px;
-            letter-spacing: 1px;
         }
-
-        button:hover {
-            box-shadow: 0 0 20px #00ff00;
-            background-color: #00cc00;
+        #console { 
+            display: none; 
+            text-align: left; 
+            font-size: 11px; 
+            height: 250px; 
+            overflow-y: hidden; 
+            margin-top: 15px; 
+            border-top: 1px solid #00ff00; 
+            padding-top: 10px; 
+            word-wrap: break-word;
         }
-
-        /* Welcome Message Style */
-        .welcome-msg {
+        .success-text { 
+            color: white; 
+            background: #008000; 
+            padding: 2px 5px; 
+            font-weight: bold;
+        }
+        .welcome-screen {
             display: none;
-            color: #00ff00;
-            font-size: 24px;
-            text-shadow: 0 0 15px #00ff00;
-            animation: blink 1.5s infinite;
+            font-size: 20px;
+            text-align: center;
+            animation: pulse 1s infinite;
         }
-
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
 
-    <div class="server-box" id="loginBox">
-        <h1>MOKIBUL KHAN SERVER</h1>
-        <p id="status-text">System Locked: Enter Key</p>
-        
-        <div id="inputArea">
-            <input type="password" id="keyInput" placeholder="Secret Key...">
-            <button onclick="checkKey()">ACCESS GRANTED</button>
-        </div>
-
-        <div id="welcomeArea" class="welcome-msg">
-            WELCOME TO MINI SERVER MOKIBUL
-        </div>
+<div class="container" id="mainBox">
+    <h2 id="title">MOKIBUL KHAN MINI SERVER</h2>
+    
+    <div id="loginUI">
+        <p style="font-size: 13px;">[!] System Locked: Brute Force Required</p>
+        <input type="password" id="passInput" placeholder="Enter Secret Key...">
+        <br>
+        <button onclick="runHydra()">Launch Hydra Attack</button>
     </div>
 
-    <script>
-        function checkKey() {
-            const key = document.getElementById("keyInput").value;
+    <div id="console"></div>
+
+    <div id="welcomeArea" class="welcome-screen">
+        WELCOME TO MINI SERVER MOKIBUL
+    </div>
+</div>
+
+<script>
+    function runHydra() {
+        const input = document.getElementById("passInput").value;
+        const consoleBox = document.getElementById("console");
+        const loginUI = document.getElementById("loginUI");
+        const title = document.getElementById("title");
+        const welcomeArea = document.getElementById("welcomeArea");
+
+        if(input === "MOKIBUL2026") {
+            loginUI.style.display = "none";
+            consoleBox.style.display = "block";
+            title.innerText = "HYDRA v8.6 - ATTACKING...";
+
+            let count = 0;
+            const passwords = ["admin123", "123456", "password", "mokibul_king", "almina_love", "root_user", "hacker_pro", "qwerty", "000000"];
             
-            // आपका पासवर्ड यहाँ है: MOKIBUL2026
-            if (key === "MOKIBUL2026") {
-                // लॉगिन एरिया छुपाना
-                document.getElementById("inputArea").style.display = "none";
-                document.getElementById("status-text").style.display = "none";
+            let interval = setInterval(() => {
+                let randomPass = passwords[Math.floor(Math.random() * passwords.length)] + Math.floor(Math.random() * 999);
+                let thread = Math.floor(Math.random() * 16);
                 
-                // वेलकम मैसेज दिखाना
-                document.getElementById("welcomeArea").style.display = "block";
-                
-                // बॉक्स का टाइटल बदलना
-                document.querySelector("h1").innerText = "SYSTEM UNLOCKED";
-            } else {
-                alert("WRONG KEY! कोशिश करते रहो।");
-                document.getElementById("keyInput").value = "";
-            }
+                consoleBox.innerHTML += `[DATA] Thread #${thread}: checking '${randomPass}'... <span style="color:red;">FAILED</span><br>`;
+                consoleBox.scrollTop = consoleBox.scrollHeight;
+                count++;
+
+                // 40 लाइन के बाद पासवर्ड मिल जाएगा
+                if (count > 40) {
+                    clearInterval(interval);
+                    consoleBox.innerHTML += `<br><span class="success-text">[MATCH] PASSWORD FOUND: MOKIBUL2026</span><br>`;
+                    consoleBox.innerHTML += `[INFO] Attack stopped. Connection established.`;
+                    
+                    setTimeout(() => {
+                        consoleBox.style.display = "none";
+                        title.innerText = "ACCESS GRANTED";
+                        welcomeArea.style.display = "block";
+                    }, 2000);
+                }
+            }, 60); // स्पीड यहाँ से कंट्रोल कर सकते हैं
+        } else {
+            alert("Wrong Key! Access Denied.");
+            document.getElementById("passInput").value = "";
         }
-    </script>
+    }
+</script>
 
 </body>
 </html>
