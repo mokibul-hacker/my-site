@@ -3,81 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOKIBUL RIDDLE SERVER</title>
+    <title>MOKIBUL PRIVATE SERVER</title>
     <style>
-        body { background-color: #000; color: #00ff00; font-family: 'Courier New', monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
-        .container { border: 2px solid #00ff00; padding: 25px; border-radius: 10px; text-align: center; box-shadow: 0 0 30px #00ff00; width: 380px; background: rgba(0,0,0,0.95); }
-        .title { font-size: 20px; font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid #00ff00; padding-bottom: 10px; }
-        #console { display: none; text-align: left; font-size: 10px; height: 250px; overflow-y: hidden; margin-top: 15px; background: #050505; padding: 10px; border: 1px solid #004400; }
-        input { width: 85%; padding: 10px; background: black; border: 1px solid #00ff00; color: #00ff00; margin-top: 10px; text-align: center; outline: none; }
-        button { width: 100%; padding: 15px; background: #00ff00; color: #000; font-weight: bold; cursor: pointer; border: none; font-size: 14px; margin-top: 15px; }
-        .success-box { color: #000; background: #00ff00; font-weight: bold; display: none; padding: 20px; margin-top: 10px; border-radius: 5px; }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <div class="title" id="mainTitle">MOKIBUL SECURITY GATE</div>
-    
-    <div id="riddleUI">
-        <p style="font-size: 14px; color: #fff;">[पहेली]: वह क्या है जो खेत में "हरी", बाजार में "काली" और घर में "लाल" हो जाती है?</p>
-        <input type="text" id="riddleAnswer" placeholder="अपना जवाब यहाँ लिखें...">
-        <button onclick="checkRiddle()">VERIFY & START ATTACK</button>
-    </div>
-
-    <div id="console"></div>
-    <div id="successScreen" class="success-box">
-        ACCESS GRANTED<br>WELCOME TO MINI SERVER MOKIBUL
-    </div>
-</div>
-
-<script>
-    function checkRiddle() {
-        const answer = document.getElementById("riddleAnswer").value.trim();
-        
-        // सही जवाब "चाय पत्ती" या "Chai patti" होना चाहिए
-        if (answer === "चाय पत्ती" || answer.toLowerCase() === "chai patti") {
-            startDeepAttack();
-        } else {
-            alert("गलत जवाब! सिस्टम लॉक है। फिर से सोचो।");
+        body { 
+            background-color: #000; 
+            color: #00ff00; 
+            font-family: 'Courier New', monospace; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
         }
-    }
+        .container { 
+            border: 2px solid #00ff00; 
+            padding: 30px; 
+            border-radius: 15px; 
+            text-align: center; 
+            box-shadow: 0 0 20px #00ff00; 
+            width: 320px; 
+            background: rgba(0,0,0,0.9);
+        }
+        h2 { font-size: 20px; margin-bottom: 20px; text-transform: uppercase; }
+        
+        input { 
+            width: 90%; 
+            padding: 12px; 
+            background: transparent; 
+            border: 1px solid #00ff00; 
+            color: #00ff00; 
+            margin-bottom: 10px; 
+            text-align: center; 
+            outline: none;
+            font-size: 16px;
+        }
 
-    function startDeepAttack() {
-        document.getElementById("riddleUI").style.display = "none";
-        const consoleBox = document.getElementById("console");
-        const mainTitle = document.getElementById("mainTitle");
-        const successScreen = document.getElementById("successScreen");
+        #error-msg { 
+            color: #ff0000; 
+            font-size: 14px; 
+            font-weight: bold; 
+            height: 20px; 
+            margin-bottom: 15px; 
+            display: none; /* शुरू में छुपा रहेगा */
+        }
 
-        consoleBox.style.display = "block";
-        mainTitle.innerText = "BRUTE-FORCE INITIATED...";
-
-        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        let attempts = 0;
-
-        let attackInterval = setInterval(() => {
-            let randomPass = "";
-            for (let i = 0; i < 8; i++) {
-                randomPass += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-
-            consoleBox.innerHTML += `[TRYING] ${randomPass} ... <span style="color:red;">FAILED</span><br>`;
-            consoleBox.scrollTop = consoleBox.scrollHeight;
-            attempts++;
-
-            if (attempts >= 100) {
-                clearInterval(attackInterval);
-                consoleBox.innerHTML += `<br><span style="color:white; background:green;">[SUCCESS] PASSWORD FOUND: Kali mitti</span>`;
-                
-                setTimeout(() => {
-                    consoleBox.style.display = "none";
-                    mainTitle.innerText = "SYSTEM UNLOCKED";
-                    successScreen.style.display = "block";
-                }, 2000);
-            }
-        }, 40);
-    }
-</script>
-
-</body>
-</html>
+        button { 
+            width: 100%; 
+            padding: 15px; 
+            background: #00ff00; 
+            color: #000; 
+            font-weight: bold; 
+            cursor: pointer; 
+            border: none; 
+            text-transform: uppercase;
