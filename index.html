@@ -1,18 +1,95 @@
-async function checkKey() {
-    const inputKey = document.getElementById("secret-input").value;
-    const encoder = new TextEncoder();
-    const data = encoder.encode(inputKey);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mokibul Khan Server</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
 
-    // यह 'MOKIBUL2026' का सुरक्षित हैश (Hash) है
-    const correctHash = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8";
+        .server-box {
+            border: 3px solid #00ff00;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 20px #00ff00;
+            background: rgba(0, 0, 0, 0.9);
+            width: 300px;
+        }
 
-    if (hashHex === correctHash) {
-        alert("ACCESS GRANTED! स्वागत है मोकिबुल खान।");
-        window.location.href = "success.html"; 
-    } else {
-        alert("WRONG KEY! कोशिश करते रहो।");
-    }
-}
+        h1 {
+            color: #00ff00;
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        p {
+            color: #00ff00;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            background: transparent;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            text-align: center;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00ff00;
+            border: none;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            box-shadow: 0 0 15px #00ff00;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="server-box">
+        <h1>MOKIBUL KHAN SERVER</h1>
+        <p>System Locked: Enter Key</p>
+        
+        <input type="password" id="keyInput" placeholder="Secret Key...">
+        <button onclick="checkKey()">ACCESS GRANTED</button>
+    </div>
+
+    <script>
+        function checkKey() {
+            const key = document.getElementById("keyInput").value;
+            // यहाँ आप अपना नया पासवर्ड सेट कर सकते हैं
+            if (key === "MOKIBUL2026") {
+                alert("ACCESS GRANTED! स्वागत है मोकिबुल खान।");
+                window.location.href = "success.html"; // सही पासवर्ड पर यहाँ जाएगा
+            } else {
+                alert("WRONG KEY! कोशिश करते रहो।");
+            }
+        }
+    </script>
+
+</body>
+</html>
