@@ -13,6 +13,7 @@
             height: 100vh;
             margin: 0;
             font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
         }
 
         .server-box {
@@ -20,20 +21,21 @@
             padding: 40px;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 0 20px #00ff00;
+            box-shadow: 0 0 25px #00ff00;
             background: rgba(0, 0, 0, 0.9);
-            width: 300px;
+            width: 320px;
+            transition: 0.5s;
         }
 
         h1 {
             color: #00ff00;
-            font-size: 24px;
+            font-size: 22px;
             text-transform: uppercase;
             margin-bottom: 10px;
             text-shadow: 0 0 10px #00ff00;
         }
 
-        p {
+        #status-text {
             color: #00ff00;
             font-size: 14px;
             margin-bottom: 25px;
@@ -41,52 +43,84 @@
 
         input {
             width: 90%;
-            padding: 10px;
+            padding: 12px;
             background: transparent;
             border: 1px solid #00ff00;
             color: #00ff00;
             text-align: center;
             margin-bottom: 20px;
             outline: none;
+            font-size: 16px;
         }
 
         button {
             width: 100%;
-            padding: 12px;
+            padding: 15px;
             background-color: #00ff00;
             border: none;
             color: black;
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
-            transition: 0.3s;
+            font-size: 14px;
+            letter-spacing: 1px;
         }
 
         button:hover {
-            box-shadow: 0 0 15px #00ff00;
-            transform: scale(1.02);
+            box-shadow: 0 0 20px #00ff00;
+            background-color: #00cc00;
+        }
+
+        /* Welcome Message Style */
+        .welcome-msg {
+            display: none;
+            color: #00ff00;
+            font-size: 24px;
+            text-shadow: 0 0 15px #00ff00;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
-    <div class="server-box">
+    <div class="server-box" id="loginBox">
         <h1>MOKIBUL KHAN SERVER</h1>
-        <p>System Locked: Enter Key</p>
+        <p id="status-text">System Locked: Enter Key</p>
         
-        <input type="password" id="keyInput" placeholder="Secret Key...">
-        <button onclick="checkKey()">ACCESS GRANTED</button>
+        <div id="inputArea">
+            <input type="password" id="keyInput" placeholder="Secret Key...">
+            <button onclick="checkKey()">ACCESS GRANTED</button>
+        </div>
+
+        <div id="welcomeArea" class="welcome-msg">
+            WELCOME TO MINI SERVER MOKIBUL
+        </div>
     </div>
 
     <script>
         function checkKey() {
             const key = document.getElementById("keyInput").value;
-            // यहाँ आप अपना नया पासवर्ड सेट कर सकते हैं
+            
+            // आपका पासवर्ड यहाँ है: MOKIBUL2026
             if (key === "MOKIBUL2026") {
-                alert("ACCESS GRANTED! स्वागत है मोकिबुल खान।");
-                window.location.href = "success.html"; // सही पासवर्ड पर यहाँ जाएगा
+                // लॉगिन एरिया छुपाना
+                document.getElementById("inputArea").style.display = "none";
+                document.getElementById("status-text").style.display = "none";
+                
+                // वेलकम मैसेज दिखाना
+                document.getElementById("welcomeArea").style.display = "block";
+                
+                // बॉक्स का टाइटल बदलना
+                document.querySelector("h1").innerText = "SYSTEM UNLOCKED";
             } else {
                 alert("WRONG KEY! कोशिश करते रहो।");
+                document.getElementById("keyInput").value = "";
             }
         }
     </script>
