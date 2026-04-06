@@ -3,56 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOKIBUL PRIVATE SERVER</title>
+    <title>Mokibul Khan Server</title>
     <style>
-        body { 
-            background-color: #000; 
-            color: #00ff00; 
-            font-family: 'Courier New', monospace; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            margin: 0; 
-        }
-        .container { 
-            border: 2px solid #00ff00; 
-            padding: 30px; 
-            border-radius: 15px; 
-            text-align: center; 
-            box-shadow: 0 0 20px #00ff00; 
-            width: 320px; 
-            background: rgba(0,0,0,0.9);
-        }
-        h2 { font-size: 20px; margin-bottom: 20px; text-transform: uppercase; }
-        
-        input { 
-            width: 90%; 
-            padding: 12px; 
-            background: transparent; 
-            border: 1px solid #00ff00; 
-            color: #00ff00; 
-            margin-bottom: 10px; 
-            text-align: center; 
-            outline: none;
-            font-size: 16px;
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
         }
 
-        #error-msg { 
-            color: #ff0000; 
-            font-size: 14px; 
-            font-weight: bold; 
-            height: 20px; 
-            margin-bottom: 15px; 
-            display: none; /* शुरू में छुपा रहेगा */
+        .server-box {
+            border: 2px solid #00ff00;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 0 15px #00ff00;
+            width: 300px;
         }
 
-        button { 
-            width: 100%; 
-            padding: 15px; 
-            background: #00ff00; 
-            color: #000; 
-            font-weight: bold; 
-            cursor: pointer; 
-            border: none; 
+        h2 {
+            color: #00ff00;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #00ff00;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        input[type="password"] {
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 10px;
+            width: 80%;
+            text-align: center;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        button {
+            background-color: #00ff00;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 87%;
+            text-transform: uppercase;
+        }
+
+        button:active {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="server-box">
+        <h2>Mokibul Khan Server</h2>
+        <p>System Locked: Enter Key</p>
+        
+        <input type="password" id="secretKey" placeholder="Secret Key...">
+        <br>
+        <button onclick="checkPassword()">Access Granted</button>
+    </div>
+
+    <script>
+        function checkPassword() {
+            var password = document.getElementById("secretKey").value;
+            var correctPassword = "Mokibul@121";
+
+            if (password === correctPassword) {
+                alert("Access Granted! स्वागत है।");
+                // यहाँ आप अपनी फाइल या अगली वेबसाइट का लिंक डाल सकते हैं
+                // window.location.href = "your-dashboard.html";
+            } else {
+                alert("Enter your correct password");
+            }
+        }
+    </script>
+
+</body>
+</html>
