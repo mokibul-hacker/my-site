@@ -3,73 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOKIBUL ULTIMATE BRUTE-FORCE</title>
+    <title>MOKIBUL RIDDLE SERVER</title>
     <style>
         body { background-color: #000; color: #00ff00; font-family: 'Courier New', monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
         .container { border: 2px solid #00ff00; padding: 25px; border-radius: 10px; text-align: center; box-shadow: 0 0 30px #00ff00; width: 380px; background: rgba(0,0,0,0.95); }
         .title { font-size: 20px; font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid #00ff00; padding-bottom: 10px; }
-        #console { display: none; text-align: left; font-size: 10px; height: 300px; overflow-y: hidden; margin-top: 15px; background: #050505; padding: 10px; border: 1px solid #004400; }
-        button { width: 100%; padding: 15px; background: #00ff00; color: #000; font-weight: bold; cursor: pointer; border: none; font-size: 14px; letter-spacing: 2px; }
-        button:hover { background: #00cc00; box-shadow: 0 0 15px #00ff00; }
-        .match-text { color: #fff; background: #c00000; font-weight: bold; padding: 2px 4px; }
+        #console { display: none; text-align: left; font-size: 10px; height: 250px; overflow-y: hidden; margin-top: 15px; background: #050505; padding: 10px; border: 1px solid #004400; }
+        input { width: 85%; padding: 10px; background: black; border: 1px solid #00ff00; color: #00ff00; margin-top: 10px; text-align: center; outline: none; }
+        button { width: 100%; padding: 15px; background: #00ff00; color: #000; font-weight: bold; cursor: pointer; border: none; font-size: 14px; margin-top: 15px; }
         .success-box { color: #000; background: #00ff00; font-weight: bold; display: none; padding: 20px; margin-top: 10px; border-radius: 5px; }
     </style>
 </head>
 <body>
 
-<div class="container" id="mainContainer">
-    <div class="title" id="mainTitle">MOKIBUL KHAN SECURITY SYSTEM</div>
+<div class="container">
+    <div class="title" id="mainTitle">MOKIBUL SECURITY GATE</div>
     
-    <div id="startUI">
-        <p style="font-size: 12px;">TARGET: SERVER_GATEWAY_ACCESS<br>CHARSET: A-Z, a-z, 0-9<br>SPEED: ULTRA_FAST</p>
-        <button onclick="startDeepAttack()">INITIATE DEEP BRUTE-FORCE</button>
+    <div id="riddleUI">
+        <p style="font-size: 14px; color: #fff;">[पहेली]: वह क्या है जो खेत में "हरी", बाजार में "काली" और घर में "लाल" हो जाती है?</p>
+        <input type="text" id="riddleAnswer" placeholder="अपना जवाब यहाँ लिखें...">
+        <button onclick="checkRiddle()">VERIFY & START ATTACK</button>
     </div>
 
     <div id="console"></div>
     <div id="successScreen" class="success-box">
-        SYSTEM UNLOCKED<br>WELCOME TO MINI SERVER MOKIBUL
+        ACCESS GRANTED<br>WELCOME TO MINI SERVER MOKIBUL
     </div>
 </div>
 
 <script>
+    function checkRiddle() {
+        const answer = document.getElementById("riddleAnswer").value.trim();
+        
+        // सही जवाब "चाय पत्ती" या "Chai patti" होना चाहिए
+        if (answer === "चाय पत्ती" || answer.toLowerCase() === "chai patti") {
+            startDeepAttack();
+        } else {
+            alert("गलत जवाब! सिस्टम लॉक है। फिर से सोचो।");
+        }
+    }
+
     function startDeepAttack() {
-        const startUI = document.getElementById("startUI");
+        document.getElementById("riddleUI").style.display = "none";
         const consoleBox = document.getElementById("console");
         const mainTitle = document.getElementById("mainTitle");
         const successScreen = document.getElementById("successScreen");
 
-        startUI.style.display = "none";
         consoleBox.style.display = "block";
-        mainTitle.innerText = "CRACKING: A-Z 0-9 MODE";
+        mainTitle.innerText = "BRUTE-FORCE INITIATED...";
 
         const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         let attempts = 0;
-        const maxAttempts = 150; // यह 150 बार चेक करेगा
 
         let attackInterval = setInterval(() => {
-            // रैंडम पासवर्ड बनाना (A-Z 0-9)
-            let length = Math.floor(Math.random() * 5) + 4;
             let randomPass = "";
-            for (let i = 0; i < length; i++) {
+            for (let i = 0; i < 8; i++) {
                 randomPass += chars.charAt(Math.floor(Math.random() * chars.length));
             }
 
-            consoleBox.innerHTML += `[ATTEMPT] Testing: <span style="color:#aaa;">${randomPass}</span> ... <span style="color:red;">MISMATCH</span><br>`;
+            consoleBox.innerHTML += `[TRYING] ${randomPass} ... <span style="color:red;">FAILED</span><br>`;
             consoleBox.scrollTop = consoleBox.scrollHeight;
             attempts++;
 
-            if (attempts >= maxAttempts) {
+            if (attempts >= 100) {
                 clearInterval(attackInterval);
-                consoleBox.innerHTML += `<br><span class="match-text">[SUCCESS] KEY FOUND: Kali mitti</span><br>`;
-                consoleBox.innerHTML += `[INFO] Decrypting files... Done.`;
+                consoleBox.innerHTML += `<br><span style="color:white; background:green;">[SUCCESS] PASSWORD FOUND: Kali mitti</span>`;
                 
                 setTimeout(() => {
                     consoleBox.style.display = "none";
-                    mainTitle.innerText = "ACCESS GRANTED";
+                    mainTitle.innerText = "SYSTEM UNLOCKED";
                     successScreen.style.display = "block";
-                }, 2500);
+                }, 2000);
             }
-        }, 40); // 40ms की रफ़्तार (बहुत तेज़)
+        }, 40);
     }
 </script>
 
