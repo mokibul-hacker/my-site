@@ -1,41 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-  body {
-    background-color: #0d1117; /* GitHub Dark Theme */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
+import random
 
-  .name-card {
-    color: #58a6ff;
-    font-size: 3rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    text-shadow: 0 0 10px #58a6ff, 0 0 20px #58a6ff;
-    animation: glow 2s ease-in-out infinite alternate;
-  }
+def game():
+    secret_number = random.randint(1, 100)
+    attempts = 0
+    
+    print("--- संख्या पहचानो खेल ---")
+    print("मैंने 1 से 100 के बीच एक नंबर चुना है। क्या आप उसे बता सकते हैं?")
 
-  @keyframes glow {
-    from {
-      text-shadow: 0 0 10px #58a6ff, 0 0 20px #58a6ff;
-    }
-    to {
-      text-shadow: 0 0 20px #bc8cff, 0 0 30px #bc8cff;
-      color: #bc8cff;
-    }
-  }
-</style>
-</head>
-<body>
+    while True:
+        guess = int(input("अपना अंदाज़ा लिखें: "))
+        attempts += 1
 
-  <div class="name-card">आपका नाम यहाँ लिखें</div>
+        if guess < secret_number:
+            print("थोड़ा और ऊपर! (Too Low)")
+        elif guess > secret_number:
+            print("थोड़ा नीचे! (Too High)")
+        else:
+            print(f"बधाई हो! आपने {attempts} कोशिशों में सही नंबर पहचान लिया।")
+            break
 
-</body>
-</html>
+if __name__ == "__main__":
+    game()
+          
