@@ -1,94 +1,41 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mokibul Khan Server</title>
-    <style>
-        body {
-            background-color: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: sans-serif;
-        }
+<style>
+  body {
+    background-color: #0d1117; /* GitHub Dark Theme */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
 
-        .server-box {
-            border: 2px solid #00ff00;
-            border-radius: 15px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 0 15px #00ff00;
-            width: 300px;
-        }
+  .name-card {
+    color: #58a6ff;
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px #58a6ff, 0 0 20px #58a6ff;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
 
-        h2 {
-            color: #00ff00;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        p {
-            color: #00ff00;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        input[type="password"] {
-            background: transparent;
-            border: 1px solid #fff;
-            color: #fff;
-            padding: 10px;
-            width: 80%;
-            text-align: center;
-            margin-bottom: 20px;
-            outline: none;
-        }
-
-        button {
-            background-color: #00ff00;
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 87%;
-            text-transform: uppercase;
-        }
-
-        button:active {
-            opacity: 0.8;
-        }
-    </style>
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 10px #58a6ff, 0 0 20px #58a6ff;
+    }
+    to {
+      text-shadow: 0 0 20px #bc8cff, 0 0 30px #bc8cff;
+      color: #bc8cff;
+    }
+  }
+</style>
 </head>
 <body>
 
-    <div class="server-box">
-        <h2>Mokibul Khan Server</h2>
-        <p>System Locked: Enter Key</p>
-        
-        <input type="password" id="secretKey" placeholder="Secret Key...">
-        <br>
-        <button onclick="checkPassword()">Access Granted</button>
-    </div>
-
-    <script>
-        function checkPassword() {
-            var password = document.getElementById("secretKey").value;
-            var correctPassword = "Mokibul@121";
-
-            if (password === correctPassword) {
-                alert("Access Granted! स्वागत है।");
-                // यहाँ आप अपनी फाइल या अगली वेबसाइट का लिंक डाल सकते हैं
-                // window.location.href = "your-dashboard.html";
-            } else {
-                alert("Enter your correct password");
-            }
-        }
-    </script>
+  <div class="name-card">आपका नाम यहाँ लिखें</div>
 
 </body>
 </html>
