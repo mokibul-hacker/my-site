@@ -1,24 +1,70 @@
-import random
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    background-color: #1a1a1a;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  .exam-card {
+    background: #2d2d2d;
+    border-left: 5px solid #ffd700;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  .question {
+    color: #ffd700;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .answer {
+    background: #3d3d3d;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px dashed #777;
+    line-height: 1.6;
+  }
+  .tag {
+    background: #ff4757;
+    color: white;
+    padding: 2px 8px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
 
-def game():
-    secret_number = random.randint(1, 100)
-    attempts = 0
-    
-    print("--- संख्या पहचानो खेल ---")
-    print("मैंने 1 से 100 के बीच एक नंबर चुना है। क्या आप उसे बता सकते हैं?")
+<div class="exam-card">
+  <div class="tag">VVI Question 2026</div>
+  
+  <div class="question">Q1. भारतीय संविधान में 'आपातकाल' (Emergency) का प्रावधान किस देश से लिया गया है और इसके मुख्य प्रकार क्या हैं?</div>
+  
+  <div class="answer">
+    <strong>उत्तर:</strong> यह प्रावधान <strong>जर्मनी</strong> के संविधान से लिया गया है। भारत में 3 तरह के आपातकाल होते हैं:<br>
+    1. राष्ट्रीय आपातकाल (अनुच्छेद 352)<br>
+    2. राष्ट्रपति शासन (अनुच्छेद 356)<br>
+    3. वित्तीय आपातकाल (अनुच्छेद 360) - <em>यह भारत में अब तक एक बार भी नहीं लगा है।</em>
+  </div>
 
-    while True:
-        guess = int(input("अपना अंदाज़ा लिखें: "))
-        attempts += 1
+  <br>
 
-        if guess < secret_number:
-            print("थोड़ा और ऊपर! (Too Low)")
-        elif guess > secret_number:
-            print("थोड़ा नीचे! (Too High)")
-        else:
-            print(f"बधाई हो! आपने {attempts} कोशिशों में सही नंबर पहचान लिया।")
-            break
+  <div class="question">Q2. 'सतत विकास' (Sustainable Development) से आप क्या समझते हैं? यह परीक्षा में क्यों आता है?</div>
+  
+  <div class="answer">
+    <strong>उत्तर:</strong> इसका अर्थ है संसाधनों का इस तरह उपयोग करना कि आज की ज़रूरतें भी पूरी हों और भविष्य की पीढ़ी के लिए भी संसाधन बचे रहें। यह पर्यावरण अध्ययन (EVS) का सबसे महत्वपूर्ण हिस्सा है।
+  </div>
+</div>
 
-if __name__ == "__main__":
-    game()
-          
+</body>
+</html>
